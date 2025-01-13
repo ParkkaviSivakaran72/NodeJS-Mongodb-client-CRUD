@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mongodb CRUD example</title>
+</head>
+<body>
+    <h1>Mongodb CRUD example</h1>
+    {{message}}
+    <br>
+    <br>
+    {{#if edit_id}}
+    <h1>Edit</h1>
+    <form method="post" action="/update_details/{{edit_id}}">
+        <label for="name">Name</label><br>
+        <input type="text" name="name" id="name" value="{{edit_detail.name}}"><br><br>
+        <label for="age">Age</label><br>
+        <input type="text" name="age" id="age" value="{{edit_detail.age}}"><br><br>
+        <label for="company">Company</label><br>
+        <input type="text" name="company" id="company" value="{{edit_detail.company}}"><br><br>
+        <label for="email">Email</label><br>
+        <input type="text" name="email" id="email" value="{{edit_detail.email}}"><br><br>
+        <label for="phone">Phone</label><br>
+        <input type="text" name="phone" id="phone" value="{{edit_detail.phone}}"><br><br>
+        <input type="submit">
+    </form>
+
+    {{else}}
+
+    <h1>Create</h1>
+    <form method="post" action="/store_details">
+        <label for="name">Name</label><br>
+        <input type="text" name="name" id="name"><br><br>
+        <label for="age">Age</label><br>
+        <input type="text" name="age" id="age"><br><br>
+        <label for="company">Company</label><br>
+        <input type="text" name="company" id="company"><br><br>
+        <label for="email">Email</label><br>
+        <input type="text" name="email" id="email"><br><br>
+        <label for="phone">Phone</label><br>
+        <input type="text" name="phone" id="phone"><br><br>
+        <input type="submit">
+    </form>
+
+    {{/if}}
+
+    <ul>
+        {{#each workers}}
+        <li>{{this.name}} - {{this.age}} <a href="/?edit_id={{this._id}}">Edit</a> <a href="/?delete_id={{this._id}}" onclick= = return confirm ('are you sure to delete')>Delete</a></li>
+        {{/each}}
+    </ul>
+</body>
+</html>
